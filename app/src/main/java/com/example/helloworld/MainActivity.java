@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         game = new Game();
+        show();
     }
 
 
@@ -45,7 +47,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
+
+    }
+
+    public void show() {
+        TextView pCards = (TextView)findViewById(R.id.playerCards);
+        pCards.setText(game.printYHand());
+        TextView dCards = (TextView)findViewById(R.id.dealerCards);
+        dCards.setText(game.printDHand());
     }
 
     public void heet(View v) {
@@ -53,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         Log.i("info", "hello");
         game.hit();
+        show();
     }
 
     public void stand(View v) {
@@ -60,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         Log.i("info", "hello");
         game.stand();
+        show();
     }
 
 

@@ -3,6 +3,7 @@ package com.example.helloworld;
 import android.util.Log;
 
 import java.util.ArrayList;
+import android.widget.TextView;
 
 
 public class Game {
@@ -18,6 +19,8 @@ public class Game {
         deck.shuffle(); // shuffles deck
         start(deck, dealer, you); // deals cards and prints initial cards
     }
+
+
 
     public void hit() {
         Log.d("myTag", "Player drew card!");
@@ -39,6 +42,22 @@ public class Game {
             }
         }
         DealerTurn(dealer);
+    }
+
+    public String printYHand() {
+        String pHand = "";
+        for (int i = 0; i < you.size(); i++) {
+            pHand += you.get(i) + ", ";
+        }
+        return pHand;
+    }
+
+    public String printDHand() {
+        String dHand = "";
+        for (int i = 0; i < dealer.size(); i++) {
+            dHand += dealer.get(i) + ", ";
+        }
+        return dHand;
     }
 
     public void DealerTurn(ArrayList<Card> d) {
