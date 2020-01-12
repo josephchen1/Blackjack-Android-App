@@ -54,9 +54,39 @@ public class MainActivity extends AppCompatActivity {
 
     public void show() {
         TextView pCards = (TextView)findViewById(R.id.playerCards);
-        pCards.setText(game.printYHand());
+        pCards.setText("Your hand: " + game.printYHand());
+        TextView pScore = (TextView)findViewById(R.id.playerScore);
+        pScore.setText("Your score: " + game.printYScore());
         TextView dCards = (TextView)findViewById(R.id.dealerCards);
-        dCards.setText(game.printDHand());
+        dCards.setText("Dealer's hand: " + game.printDHand());
+        TextView dScore = (TextView)findViewById(R.id.dealerScore);
+        dScore.setText("Dealer's score: ");
+    }
+
+    public void finalShow() {
+        TextView pCards = (TextView)findViewById(R.id.playerCards);
+        pCards.setText("Your hand: " + game.printYHand());
+        TextView pScore = (TextView)findViewById(R.id.playerScore);
+        pScore.setText("Your score: " + game.printYScore());
+        TextView dCards = (TextView)findViewById(R.id.dealerCards);
+        dCards.setText("Dealer's hand: " + game.printDFinalHand());
+        TextView dScore = (TextView)findViewById(R.id.dealerScore);
+        dScore.setText("Dealer's score: " + game.printDScore());
+    }
+
+    public void result() {
+        TextView result = (TextView)findViewById(R.id.result);
+        result.setText(game.printResult());
+    }
+
+    public void restart(View v) {
+        game.deck.shuffle();
+        game.dealer.clear();
+        game.you.clear();
+        game.start();
+        show();
+        TextView result = (TextView)findViewById(R.id.result);
+        result.setText("Result :");
     }
 
     public void heet(View v) {
@@ -65,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
         Log.i("info", "hello");
         game.hit();
         show();
+        if (game.endingg) {
+            result();
+            finalShow();
+        }
     }
 
     public void stand(View v) {
@@ -73,6 +107,11 @@ public class MainActivity extends AppCompatActivity {
         Log.i("info", "hello");
         game.stand();
         show();
+        if (game.endingg) {
+            result();
+            finalShow();
+        }
+        Log.d("myTag", "" + game.endingg);
     }
 
 
