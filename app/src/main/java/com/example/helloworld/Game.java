@@ -22,7 +22,8 @@ public class Game {
         start(); // deals cards and prints initial cards
     }
 
-
+    //TODO: ADD ACE 1 or 11 FUNCTION
+    //TODO: DELETE UNNEEDED LOGCATS and METHODS
 
     public void hit() {
         Log.d("myTag", "Player drew card!");
