@@ -14,8 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.Scanner;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
         game = new Game();
         show();
+        game.checkStart();
+        if (game.endingg) {
+            result();
+            finalShow();
+        }
+
     }
 
 
@@ -80,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void result() {
         TextView result = (TextView)findViewById(R.id.result);
-        result.setTextSize(20);
+        result.setTextSize(18);
         result.setText(game.printResult());
     }
 
@@ -91,7 +95,12 @@ public class MainActivity extends AppCompatActivity {
         game.start();
         show();
         TextView result = (TextView)findViewById(R.id.result);
-        result.setText("Result :");
+        result.setText("Result:");
+        game.checkStart();
+        if (game.endingg) {
+            result();
+            finalShow();
+        }
     }
 
     public void heet(View v) {

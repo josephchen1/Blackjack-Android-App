@@ -14,11 +14,10 @@ public class Deck {
     }
 
     public void shuffle() {
-        for (int i = 0; i < 4000; i++) {
+        for (int i = 0; i < 10000; i++) {
             int a = (int) (Math.random() * cards.length);
             int b = (int) (Math.random() * cards.length);
-            Card temp = new Card();
-            temp = cards[a];
+            Card temp = cards[a];
             cards[a] = cards[b];
             cards[b] = temp;
 

@@ -3,8 +3,6 @@ package com.example.helloworld;
 import android.util.Log;
 
 import java.util.ArrayList;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class Game {
@@ -22,8 +20,7 @@ public class Game {
         start(); // deals cards and prints initial cards
     }
 
-    //TODO: ADD ACE 1 or 11 FUNCTION
-    //TODO: DELETE UNNEEDED LOGCATS and METHODS
+
 
     public void hit() {
         Log.d("myTag", "Player drew card!");
@@ -167,20 +164,33 @@ public class Game {
         dealerDone = false;
         playerDone = false;
         endingg = false;
-        you.add(deck.dealCard(0)); // deals cards
-        dealer.add(deck.dealCard(1));
-        you.add(deck.dealCard(2));
-        dealer.add(deck.dealCard(3));
+        you.add(deck.dealCard(n));
+        n++;// deals cards
+        dealer.add(deck.dealCard(n));
+        n++;
+        you.add(deck.dealCard(n));
+        n++;
+        dealer.add(deck.dealCard(n));
+        n++;
         Log.d("myTag", "Your cards:");
         printCards(you);
         Log.d("myTag", "Your points: " + getScore(you));
         Log.d("myTag", "Dealer's cards:");
         Log.d("myTag", ""+dealer.get(0));
         Log.d("myTag", "UNKNOWN");
+
+    }
+
+    public void checkStart() {
+        if (getScore(you)==21 || getScore(dealer)==21 ) {
+            playerDone = true;
+            dealerDone = true;
+            ending(dealer, you);
+            endingg = true;
+        }
     }
 
     public void ending(ArrayList<Card> d, ArrayList<Card> y) {
-
         Log.d("myTag", "\nYour cards:");
         printCards(y);
         Log.d("myTag", "Your points: " + getScore(y));
