@@ -45,6 +45,11 @@ public class Card {
         }
     }
 
+    public void setAce() {
+        face = "ACE";
+        value = 0;
+    }
+
     // getters
     public String getFace() {
         return face;
@@ -59,6 +64,8 @@ public class Card {
             return 10;
         } else if (value == 1) {
             return 11;
+        } else if (value == 0) {
+            return 1;
         }
         return value;
     }

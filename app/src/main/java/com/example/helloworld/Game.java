@@ -39,13 +39,36 @@ public class Game {
             }
             Log.d("myTag", "UNKNOWN");
             if (getScore(you) > 21) {
-                Log.d("myTag", "Player BUSTED!");
-                playerDone = true;
-                ending(dealer, you);
-                endingg = true;
+                if (hasAce(you)) {
+                    changeAce(you);
+                } else {
+                    Log.d("myTag", "Player BUSTED!");
+                    playerDone = true;
+                    ending(dealer, you);
+                    endingg = true;
+                }
             }
         }
         DealerTurn();
+    }
+
+    public boolean hasAce(ArrayList<Card> a) {
+        boolean ace = false;
+        for (int i = 0; i < a.size(); i++) {
+            if (a.get(i).getFace().equals("ACE")&&a.get(i).getPoints()==11) {
+                ace = true;
+            }
+        }
+        return ace;
+    }
+
+    public void changeAce(ArrayList<Card> a) {
+        for (int i = 0; i < a.size(); i++) {
+            if (a.get(i).getFace().equals("ACE")&&a.get(i).getPoints()==11) {
+                a.get(i).setAce();
+                break;
+            }
+        }
     }
 
     public String printYHand() {
@@ -95,9 +118,13 @@ public class Game {
             }
             Log.d("myTag", "UNKNOWN");
             if (getScore(dealer) >= 21) {
-                dealerDone = true;
-                ending(dealer, you);
-                endingg = true;
+                if (hasAce(dealer)) {
+                    changeAce(dealer);
+                } else {
+                    dealerDone = true;
+                    ending(dealer, you);
+                    endingg = true;
+                }
             }
         } else if (getScore(dealer) > 17 && getScore(dealer) < 21) {
             Log.d("myTag", "Dealer stood!");
@@ -106,12 +133,19 @@ public class Game {
             dealerDone = true;
             ending(dealer, you);
             endingg = true;
-        } else if (getScore(dealer) < 17 && playerDone == true) {
-            while (getScore(dealer) < 17) {
-                Log.d("myTag", "Dealer drew card!");
-                dealer.add(deck.dealCard(n));
-                n++;
+        } else if (getScore(dealer) < 17 && playerDone == true && getScore(you) < 21) {
+            dealer.add(deck.dealCard(n));
+            n++;
+            if (getScore(dealer) >= 21) {
+                if (hasAce(dealer)) {
+                    changeAce(dealer);
+                } else {
+                    dealerDone = true;
+                    ending(dealer, you);
+                    endingg = true;
+                }
             }
+        } else if (getScore(dealer) < 17 && playerDone == true) {
             ending(dealer, you);
             endingg = true;
         }

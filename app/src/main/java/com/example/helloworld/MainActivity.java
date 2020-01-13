@@ -54,28 +54,33 @@ public class MainActivity extends AppCompatActivity {
 
     public void show() {
         TextView pCards = (TextView)findViewById(R.id.playerCards);
-        pCards.setText("Your hand: " + game.printYHand());
+        pCards.setTextSize(18);
+        pCards.setText("Your hand: \n" + game.printYHand());
         TextView pScore = (TextView)findViewById(R.id.playerScore);
+        pScore.setTextSize(18);
         pScore.setText("Your score: " + game.printYScore());
         TextView dCards = (TextView)findViewById(R.id.dealerCards);
-        dCards.setText("Dealer's hand: " + game.printDHand());
+        dCards.setTextSize(18);
+        dCards.setText("Dealer's hand: \n" + game.printDHand());
         TextView dScore = (TextView)findViewById(R.id.dealerScore);
+        dScore.setTextSize(18);
         dScore.setText("Dealer's score: ");
     }
 
     public void finalShow() {
         TextView pCards = (TextView)findViewById(R.id.playerCards);
-        pCards.setText("Your hand: " + game.printYHand());
+        pCards.setText("Your hand: \n" + game.printYHand());
         TextView pScore = (TextView)findViewById(R.id.playerScore);
         pScore.setText("Your score: " + game.printYScore());
         TextView dCards = (TextView)findViewById(R.id.dealerCards);
-        dCards.setText("Dealer's hand: " + game.printDFinalHand());
+        dCards.setText("Dealer's hand: \n" + game.printDFinalHand());
         TextView dScore = (TextView)findViewById(R.id.dealerScore);
         dScore.setText("Dealer's score: " + game.printDScore());
     }
 
     public void result() {
         TextView result = (TextView)findViewById(R.id.result);
+        result.setTextSize(20);
         result.setText(game.printResult());
     }
 
